@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TILT - Resources for Faculty & Instructors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            background: #e67e22;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        .nav {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item a:hover,
+        .nav-item.active a {
+            color: #1e5631;
+            border-bottom-color: #1e5631;
+        }
+
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Enhanced Breadcrumb */
+        .breadcrumb {
+            background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: #6c757d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .breadcrumb a:hover {
+            color: #1e5631;
+            transform: translateX(2px);
+        }
+
+        .breadcrumb-separator {
+            color: #adb5bd;
+            margin: 0 0.5rem;
+        }
+
+        .breadcrumb-current {
+            color: #1e5631;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #1e5631;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .page-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Enhanced Priority Access */
+        .priority-access {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(30, 86, 49, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .priority-access::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,50 Q250,0 500,50 T1000,50 V100 H0 Z"/></svg>') no-repeat center bottom;
+            background-size: cover;
+        }
+        
+        .priority-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .priority-subtitle {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .priority-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .priority-btn {
+            background: white;
+            color: #1e5631;
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 240px;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .priority-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+        }
+
+        /* Modern Quick Links Section */
+        .quick-links-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .quick-links-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e5631;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.25rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            justify-content: center;
+        }
+
+        .quick-link:hover {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 86, 49, 0.3);
+            border-color: #1e5631;
+        }
+
+        .quick-link .icon {
+            font-size: 1rem;
+        }
+        
+        /* Enhanced Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #1e5631;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c, #1e5631);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .resource-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .resource-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover .resource-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+        }
+        
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e5631;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .resource-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .resource-meta {
+            font-size: 0.8rem;
+            color: #adb5bd;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            border: 1px solid #dee2e6;
+        }
+        
+        .resource-link {
+            color: #1e5631;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            color: #2d6e3c;
+            transform: translateX(3px);
+        }
+
+        .resource-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover::after {
+            transform: translateX(3px);
+        }
+        
+        /* Enhanced Section titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e5631;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e8f5e8;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c);
+            border-radius: 2px;
+        }
+        
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Events Section */
+        .events-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .no-events {
+            color: #6c757d;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .no-events a {
+            color: #1e5631;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .no-events a:hover {
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+        
+        /* Enhanced Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(30, 86, 49, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e5631;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #a8d4a8;
+            font-weight: 600;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #d4edda;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2d6e3c;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #a8d4a8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .resource-card:nth-child(1) { animation-delay: 0.1s; }
+        .resource-card:nth-child(2) { animation-delay: 0.2s; }
+        .resource-card:nth-child(3) { animation-delay: 0.3s; }
+        .resource-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .priority-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .priority-btn {
+                min-width: auto;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 0.5rem;
+                display: none;
+                background: white;
+                border-radius: 8px;
+                padding: 1rem;
+                margin-top: 1rem;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            }
+            
+            .nav-list.mobile-open {
+                display: flex;
+            }
+            
+            .nav-item a {
+                padding: 0.75rem 0;
+                color: #333;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .search-input {
+                width: 250px;
+            }
+
+            .logo {
+                font-size: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .priority-access {
+                padding: 2rem 1.5rem;
+            }
+
+            .quick-links-section {
+                padding: 1.5rem;
+            }
+
+            .search-input {
+                width: 200px;
+            }
+
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                🎓 Colorado State University | The Institute for Learning and Teaching
+            </div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search resources, programs, events...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-list" id="navList">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item active"><a href="#faculty">For Faculty & Postdocs</a></li>
+                <li class="nav-item"><a href="undergrad-students.html">For Undergrad Students</a></li>
+                <li class="nav-item"><a href="grad-students.html">For Grad Students</a></li>
+                <li class="nav-item"><a href="#about">About TILT</a></li>
+                <li class="nav-item"><a href="#staff">Staff</a></li>
+                <li class="nav-item"><a href="#calendar">Calendar</a></li>
+                <li class="nav-item"><a href="#login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Enhanced Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="#home">🏠 Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">Resources for Faculty & Instructors</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Resources for Faculty & Instructors</h1>
+        <p class="page-subtitle">Teaching excellence, professional development, and instructional support</p>
+        
+        <!-- Enhanced Priority Access -->
+        <div class="priority-access">
+            <div class="priority-title">🎯 Most Requested Faculty Resources</div>
+            <div class="priority-subtitle">One-click access to the resources faculty use most</div>
+            <div class="priority-buttons">
+                <a href="#tef" class="priority-btn">📊 Teaching Effectiveness Framework (TEF)</a>
+                <a href="#bpit" class="priority-btn">🎓 Best Practices in Teaching (BPiT)</a>
+                <a href="#annual-review" class="priority-btn">📋 Annual Review of Teaching</a>
+            </div>
+        </div>
+
+        <!-- Modern Quick Links Section -->
+        <div class="quick-links-section">
+            <div class="quick-links-title">
+                🔗 Quick Links
+            </div>
+            <div class="quick-links-grid">
+                <a href="#instructional-designer" class="quick-link">
+                    <span class="icon">👨‍💻</span>
+                    <span>Instructional Designer</span>
+                </a>
+                <a href="#tei-program" class="quick-link">
+                    <span class="icon">🏆</span>
+                    <span>TEI Program</span>
+                </a>
+                <a href="#workshops" class="quick-link">
+                    <span class="icon">📚</span>
+                    <span>Workshops & Events</span>
+                </a>
+                <a href="#canvas-help" class="quick-link">
+                    <span class="icon">💻</span>
+                    <span>Canvas Support</span>
+                </a>
+                <a href="#academic-integrity" class="quick-link">
+                    <span class="icon">⚖️</span>
+                    <span>Academic Integrity</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Teaching Excellence Section -->
+        <section>
+            <h2 class="section-title">🏆 Teaching Excellence</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <div class="resource-title">Teaching Effectiveness Framework (TEF)</div>
+                    <div class="resource-description">
+                        Seven evidence-based domains to enhance teaching practices and student success.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Framework</span>
+                        <span class="meta-item">Self-assessment</span>
+                    </div>
+                    <a href="#tef" class="resource-link">Access TEF</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">Teaching Effectiveness Initiative (TEI)</div>
+                    <div class="resource-description">
+                        Voluntary program for professional development and teaching recognition.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Certificate program</span>
+                        <span class="meta-item">Recognition</span>
+                    </div>
+                    <a href="#tei" class="resource-link">Join TEI</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">Annual Review of Teaching</div>
+                    <div class="resource-description">
+                        Comprehensive guidelines and tools for teaching evaluations and growth.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Required</span>
+                        <span class="meta-item">Annual</span>
+                    </div>
+                    <a href="#annual-review" class="resource-link">Access Guidelines</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Development Section -->
+        <section>
+            <h2 class="section-title">📚 Professional Development</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <div class="resource-title">Best Practices in Teaching (BPiT)</div>
+                    <div class="resource-description">
+                        Evidence-based online courses for effective teaching across seven domains.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Online courses</span>
+                        <span class="meta-item">3-week format</span>
+                    </div>
+                    <a href="#bpit" class="resource-link">Browse Courses</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🏢</div>
+                    <div class="resource-title">Conferences and Workshops</div>
+                    <div class="resource-description">
+                        Interactive sessions designed for transformative learning and skill development.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">In-person</span>
+                        <span class="meta-item">Interactive</span>
+                    </div>
+                    <a href="#workshops" class="resource-link">View Events</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🤝</div>
+                    <div class="resource-title">Teaching Squares</div>
+                    <div class="resource-description">
+                        Collaborative peer observation and feedback for teaching improvement.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Peer feedback</span>
+                        <span class="meta-item">Collaborative</span>
+                    </div>
+                    <a href="#teaching-squares" class="resource-link">Join Program</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructional Support Section -->
+        <section>
+            <h2 class="section-title">💻 Instructional Support</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">👨‍💻</div>
+                    <div class="resource-title">Instructional Design Support</div>
+                    <div class="resource-description">
+                        Work with instructional designers to improve course design and delivery.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">One-on-one</span>
+                        <span class="meta-item">Course design</span>
+                    </div>
+                    <a href="#instructional-design" class="resource-link">Schedule Consultation</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">💻</div>
+                    <div class="resource-title">Canvas Support & Training</div>
+                    <div class="resource-description">
+                        Learn to use Canvas effectively for course management and student engagement.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Training available</span>
+                        <span class="meta-item">Technical support</span>
+                    </div>
+                    <a href="#canvas-support" class="resource-link">Get Canvas Help</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🌐</div>
+                    <div class="resource-title">Online Teaching Resources</div>
+                    <div class="resource-description">
+                        Tools and strategies for effective online, hybrid, and synchronous instruction.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Online tools</span>
+                        <span class="meta-item">Flexible delivery</span>
+                    </div>
+                    <a href="#online-teaching" class="resource-link">Access Resources</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Resources Section -->
+        <section>
+            <h2 class="section-title">📋 Teaching Resources & Tools</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <div class="resource-title">Assessment and Gradescope</div>
+                    <div class="resource-description">
+                        Resources for grading, external exam preparation, and assessment tools.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Grading tools</span>
+                        <span class="meta-item">Assessment</span>
+                    </div>
+                    <a href="#assessment" class="resource-link">Access Tools</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📄</div>
+                    <div class="resource-title">Syllabus Template</div>
+                    <div class="resource-description">
+                        Streamlined syllabus structure to ensure necessary content is covered.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Template</span>
+                        <span class="meta-item">Required content</span>
+                    </div>
+                    <a href="#syllabus" class="resource-link">Download Template</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">♿</div>
+                    <div class="resource-title">Closed Captioning & Inclusive Design</div>
+                    <div class="resource-description">
+                        Enhance classroom accessibility with caption support and inclusive materials.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Accessibility</span>
+                        <span class="meta-item">Inclusive design</span>
+                    </div>
+                    <a href="#accessibility" class="resource-link">Learn More</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🤝</div>
+                    <div class="resource-title">Community Engaged Learning Resources</div>
+                    <div class="resource-description">
+                        Support for integrating service-learning and community partnerships into courses.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Service learning</span>
+                        <span class="meta-item">Community partnerships</span>
+                    </div>
+                    <a href="#community-engaged" class="resource-link">Get Support</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specialized Programs Section -->
+        <section>
+            <h2 class="section-title">🌟 Specialized Programs</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <div class="resource-title">Master Teaching Initiative</div>
+                    <div class="resource-description">
+                        Collaborative growth across all 8 colleges for a culture of valued pedagogy.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Cross-college</span>
+                        <span class="meta-item">Collaborative</span>
+                    </div>
+                    <a href="#master-teaching" class="resource-link">Learn More</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">👥</div>
+                    <div class="resource-title">Community of Practice</div>
+                    <div class="resource-description">
+                        Share knowledge and collaborate with others to enhance your teaching skills.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Collaboration</span>
+                        <span class="meta-item">Knowledge sharing</span>
+                    </div>
+                    <a href="#community-practice" class="resource-link">Join Community</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📚</div>
+                    <div class="resource-title">TILT Lending Library</div>
+                    <div class="resource-description">
+                        Discover evidence-based teaching strategies in our library, located in Room 231.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Physical library</span>
+                        <span class="meta-item">Room 231</span>
+                    </div>
+                    <a href="#library" class="resource-link">Visit Library</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🔐</div>
+                    <div class="resource-title">TEI Dashboard Login</div>
+                    <div class="resource-description">
+                        Log in with your NetID to track your TEI progress in the Teaching Effectiveness Initiative.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">NetID required</span>
+                        <span class="meta-item">Progress tracking</span>
+                    </div>
+                    <a href="#tei-dashboard" class="resource-link">Access Dashboard</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graduate Teaching Section -->
+        <section>
+            <h2 class="section-title">🎓 Graduate Teaching Support</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">👨‍🏫</div>
+                    <div class="resource-title">Best Practices for Faculty & Graduate Assistant Interactions</div>
+                    <div class="resource-description">
+                        Guidelines for effective professional relationships in academic settings.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Professional development</span>
+                        <span class="meta-item">Guidelines</span>
+                    </div>
+                    <a href="#faculty-ga-practices" class="resource-link">View Guidelines</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🏆</div>
+                    <div class="resource-title">Graduate Student Teaching Certificate (GSTCC)</div>
+                    <div class="resource-description">
+                        Support your graduate students in developing advanced teaching skills.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Certificate program</span>
+                        <span class="meta-item">Graduate students</span>
+                    </div>
+                    <a href="#gstcc" class="resource-link">Learn About GSTCC</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <div class="resource-title">Complete TILT Resources for Graduate Students</div>
+                    <div class="resource-description">
+                        Comprehensive resources and support for CSU graduate student development.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Comprehensive</span>
+                        <span class="meta-item">Graduate focused</span>
+                    </div>
+                    <a href="grad-students.html" class="resource-link">Explore Resources</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Postdoc Support Section -->
+        <section>
+            <h2 class="section-title">🔬 Postdoc Teaching Support</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">Postdoc Teaching Certificate of Completion (PDTCC)</div>
+                    <div class="resource-description">
+                        Specialized teaching preparation for postdocs planning academic careers.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Certificate program</span>
+                        <span class="meta-item">Career preparation</span>
+                    </div>
+                    <a href="#pdtcc" class="resource-link">Learn About PDTCC</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Success Section -->
+        <section>
+            <h2 class="section-title">📈 Academic Success Support</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">👥</div>
+                    <div class="resource-title">Free Peer-to-Peer Tutoring at TILT</div>
+                    <div class="resource-description">
+                        Direct students to free tutoring services for academic support.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Free service</span>
+                        <span class="meta-item">Student referral</span>
+                    </div>
+                    <a href="#tutoring" class="resource-link">Refer Students</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎥</div>
+                    <div class="resource-title">Academic Success Workshop Videos</div>
+                    <div class="resource-description">
+                        Video resources for student success strategies and academic skills.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Video resources</span>
+                        <span class="meta-item">Self-paced</span>
+                    </div>
+                    <a href="#workshop-videos" class="resource-link">View Videos</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">Student Success at CSU</div>
+                    <div class="resource-description">
+                        Comprehensive support systems for helping students achieve academic success.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Student support</span>
+                        <span class="meta-item">Success strategies</span>
+                    </div>
+                    <a href="#student-success" class="resource-link">Explore Support</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Undergraduate Opportunities Section -->
+        <section>
+            <h2 class="section-title">🌟 Undergraduate Opportunities</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🔬</div>
+                    <div class="resource-title">Undergraduate Research at CSU</div>
+                    <div class="resource-description">
+                        Opportunities for students to engage in research across all colleges.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Research opportunities</span>
+                        <span class="meta-item">All disciplines</span>
+                    </div>
+                    <a href="#undergrad-research" class="resource-link">Learn More</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🤝</div>
+                    <div class="resource-title">Learning Assistants (LA's)</div>
+                    <div class="resource-description">
+                        Undergraduate students supporting fellow students' learning experiences.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Peer support</span>
+                        <span class="meta-item">Course integration</span>
+                    </div>
+                    <a href="#learning-assistants" class="resource-link">Integrate LAs</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎨</div>
+                    <div class="resource-title">MURALS (Multicultural Undergraduate Research Art and Leadership Symposium)</div>
+                    <div class="resource-description">
+                        Platform for undergraduate students with marginalized identities to showcase scholarly work.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Research showcase</span>
+                        <span class="meta-item">Diversity focused</span>
+                    </div>
+                    <a href="#murals" class="resource-link">Learn About MURALS</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">💰</div>
+                    <div class="resource-title">Scholarships and Fellowship</div>
+                    <div class="resource-description">
+                        Help students find local, national, and international funding opportunities.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Funding opportunities</span>
+                        <span class="meta-item">Student growth</span>
+                    </div>
+                    <a href="#scholarships" class="resource-link">Find Funding</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section>
+            <div class="events-section">
+                <h2 class="section-title">📅 Upcoming Professional Development</h2>
+                <div class="no-events">
+                    📋 Check our calendar for the latest workshops, conferences, and professional development opportunities.
+                    <br><br>
+                    <a href="#calendar">View Full Events Calendar →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>📍 801 Oval Drive, Fort Collins, CO 80521</li>
+                    <li>📞 Phone: 970-491-4820</li>
+                    <li>✉️ Email: TILT@colostate.edu</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#tef">Teaching Effectiveness Framework</a></li>
+                    <li><a href="#bpit">Best Practices in Teaching</a></li>
+                    <li><a href="#tei">TEI Program</a></li>
+                    <li><a href="#annual-review">Annual Review</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support Services</h3>
+                <ul>
+                    <li><a href="#instructional-design">Instructional Design</a></li>
+                    <li><a href="#canvas-support">Canvas Support</a></li>
+                    <li><a href="#workshops">Professional Development</a></li>
+                    <li><a href="#teaching-squares">Teaching Squares</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Student Resources</h3>
+                <ul>
+                    <li><a href="undergrad-students.html">Undergraduate Support</a></li>
+                    <li><a href="grad-students.html">Graduate Support</a></li>
+                    <li><a href="#academic-integrity">Academic Integrity</a></li>
+                    <li><a href="#la-program">Learning Assistants</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Colorado State University | <a href="#apply">Apply to CSU</a> | <a href="#disclaimer">Disclaimer</a> | <a href="#accessibility">Accessibility</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const navList = document.getElementById('navList');
+            navList.classList.toggle('mobile-open');
+        }
+        
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+        
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navList = document.getElementById('navList');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navList.contains(event.target) && !navToggle.contains(event.target)) {
+                navList.classList.remove('mobile-open');
+            }
+        });
+        
+        // Enhanced interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for resource cards
+            document.querySelectorAll('.resource-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.boxShadow = '';
+                    }, 200);
+                });
+            });
+
+            // Add pulse animation to Quick Links on page load
+            setTimeout(() => {
+                document.querySelectorAll('.quick-link').forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.animation = 'pulse 0.6s ease-in-out';
+                    }, index * 100);
+                });
+            }, 500);
+
+            // Add pulse animation to Quick Links on page load
+            setTimeout(() => {
+                document.querySelectorAll('.quick-link').forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.animation = 'pulse 0.6s ease-in-out';
+                    }, index * 100);
+                });
+            }, 500);
+
+            // Enhanced search functionality
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+
+            // Priority button interactions
+            document.querySelectorAll('.priority-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Add CSS animation for pulse effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
