@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TILT - The Institute for Learning and Teaching | Colorado State University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            background: #e67e22;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        .nav {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            justify-content: center;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item a:hover,
+        .nav-item.active a {
+            color: #1e5631;
+            border-bottom-color: #1e5631;
+        }
+        
+        /* Enhanced Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,50 Q250,0 500,50 T1000,50 V100 H0 Z"/></svg>') no-repeat center bottom;
+            background-size: cover;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .hero-cta {
+            background: white;
+            color: #1e5631;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+        }
+        
+        /* Enhanced Priority Alert */
+        .priority-alert {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #f0ad4e;
+            border-left: 5px solid #f39c12;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(243, 156, 18, 0.15);
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .alert-title {
+            color: #856404;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .alert-content {
+            color: #856404;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .alert-btn {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .alert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        }
+        
+        /* Enhanced Audience Navigation */
+        .audience-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+        
+        .audience-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #1e5631;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .audience-subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .audience-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border-left: 5px solid #1e5631;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c, #1e5631);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .audience-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .audience-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .audience-card:hover .audience-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+        }
+        
+        .audience-card h3 {
+            font-size: 1.5rem;
+            color: #1e5631;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .audience-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .audience-highlights {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .audience-highlights li {
+            color: #1e5631;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .audience-btn {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 1.1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 280px;
+            box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+        }
+        
+        .audience-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 86, 49, 0.4);
+        }
+
+        /* Modern Quick Links Section */
+        .quick-links-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+        }
+
+        .quick-links-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .quick-links-main-title {
+            font-size: 2.2rem;
+            color: #1e5631;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .quick-links-subtitle {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .quick-links-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .quick-links-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .quick-links-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-links-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .quick-links-card:hover .quick-links-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+        }
+
+        .quick-links-card-title {
+            font-size: 1.4rem;
+            color: #1e5631;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .quick-links-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-link-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            justify-content: center;
+        }
+
+        .quick-link-item:hover {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+            border-color: #1e5631;
+        }
+
+        .quick-links-cta {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+        }
+
+        .quick-links-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 86, 49, 0.4);
+        }
+        
+        /* Enhanced News & Events */
+        .news-events {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .news-section, .events-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .news-section:hover, .events-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            color: #1e5631;
+            font-weight: 700;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #e8f5e8;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c);
+            border-radius: 2px;
+        }
+        
+        .news-item, .event-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover, .event-item:hover {
+            background: #f8f9fa;
+            margin: 0 -1rem;
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .news-item:last-child, .event-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            color: #1e5631;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+        
+        .item-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .item-date {
+            color: #adb5bd;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .view-all {
+            color: #1e5631;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .view-all:hover {
+            background: #e8f5e8;
+            transform: translateX(3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e5631;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #a8d4a8;
+            font-weight: 600;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #d4edda;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2d6e3c;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #a8d4a8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add staggered animations for cards */
+        .audience-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s both; }
+        .audience-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s both; }
+        .audience-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s both; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-events {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .quick-links-main-title {
+                font-size: 1.8rem;
+            }
+            
+            .quick-links-card {
+                padding: 2rem;
+            }
+            
+            .quick-links-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .quick-links-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .search-input {
+                width: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero-title {
+                font-size: 1.9rem;
+            }
+            
+            .audience-nav {
+                padding: 3rem 1rem;
+            }
+            
+            .quick-links-section {
+                padding: 3rem 0;
+            }
+            
+            .quick-links-main-title {
+                font-size: 1.6rem;
+            }
+            
+            .quick-links-subtitle {
+                font-size: 1rem;
+            }
+            
+            .quick-link-item {
+                padding: 0.625rem 0.875rem;
+                font-size: 0.85rem;
+            }
+            
+            .quick-links-cta {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .audience-card {
+                padding: 2rem;
+            }
+
+            .search-input {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                🎓 Colorado State University | The Institute for Learning and Teaching
+            </div>
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search resources, programs, events...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-list">
+                <li class="nav-item active"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="faculty-resources.html">For Faculty & Postdocs</a></li>
+                <li class="nav-item"><a href="undergrad-students.html">For Undergrad Students</a></li>
+                <li class="nav-item"><a href="grad-students.html">For Grad Students</a></li>
+                <li class="nav-item"><a href="#about">About TILT</a></li>
+                <li class="nav-item"><a href="#staff">Staff</a></li>
+                <li class="nav-item"><a href="#calendar">Calendar</a></li>
+                <li class="nav-item"><a href="#login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">The Institute for Learning and Teaching</h1>
+            <p class="hero-subtitle">Empowering students, faculty, and staff with research-based learning and teaching methods to support academic achievement, equity, and post-graduation success for all CSU students.</p>
+            <a href="#audience" class="hero-cta">Find Your Resources</a>
+        </div>
+    </section>
+
+    <!-- Priority Alert -->
+    <div class="priority-alert">
+        <div class="alert-title">🎉 Summer Conference 2025 Registration Now Open!</div>
+        <div class="alert-content">Join us for CSU's premier teaching and learning conference. Three days of workshops, presentations, and networking opportunities.</div>
+        <a href="#summer-conference" class="alert-btn">Register Now</a>
+    </div>
+
+    <!-- Audience Navigation -->
+    <section class="audience-nav" id="audience">
+        <h2 class="audience-title">Find Resources for Your Role</h2>
+        <p class="audience-subtitle">Choose your path to discover tailored support, training, and opportunities</p>
+        
+        <div class="audience-grid">
+            <div class="audience-card">
+                <div class="audience-icon">👨‍🏫</div>
+                <h3>Faculty & Postdocs</h3>
+                <p class="audience-description">Enhance your teaching effectiveness with professional development, instructional support, and evidence-based resources.</p>
+                <ul class="audience-highlights">
+                    <li>🎯 Teaching Effectiveness Framework (TEF)</li>
+                    <li>📚 Best Practices in Teaching (BPiT)</li>
+                    <li>👨‍💻 Instructional Design Support</li>
+                    <li>📊 Annual Review Resources</li>
+                </ul>
+                <a href="faculty-resources.html" class="audience-btn">Explore Faculty Resources</a>
+            </div>
+
+            <div class="audience-card">
+                <div class="audience-icon">🎓</div>
+                <h3>Undergraduate Students</h3>
+                <p class="audience-description">Access academic support, tutoring, research opportunities, and skills development to excel in your studies.</p>
+                <ul class="audience-highlights">
+                    <li>📚 Free Tutoring & Study Support</li>
+                    <li>🎯 Peer Academic Coaching</li>
+                    <li>🔬 Research Opportunities</li>
+                    <li>💰 Scholarships & Grants</li>
+                </ul>
+                <a href="undergrad-students.html" class="audience-btn">Access Student Support</a>
+            </div>
+
+            <div class="audience-card">
+                <div class="audience-icon">🎓</div>
+                <h3>Graduate Students</h3>
+                <p class="audience-description">Professional development, teaching training, and advanced academic support for your graduate journey.</p>
+                <ul class="audience-highlights">
+                    <li>📖 Graduate Teaching Training</li>
+                    <li>🏆 Teaching Certificate Programs</li>
+                    <li>🤝 Mentoring & Professional Development</li>
+                    <li>⚖️ Academic Integrity Resources</li>
+                </ul>
+                <a href="grad-students.html" class="audience-btn">Explore Graduate Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links-section">
+        <div class="quick-links-container">
+            <h2 class="quick-links-main-title">🔗 Quick Access to Resources</h2>
+            <p class="quick-links-subtitle">Direct links to our most-used services and tools</p>
+            
+            <div class="quick-links-grid">
+                <!-- Student Quick Links Card -->
+                <div class="quick-links-card">
+                    <div class="quick-links-header">
+                        <div class="quick-links-icon">🎓</div>
+                        <h3 class="quick-links-card-title">For Students</h3>
+                    </div>
+                    <div class="quick-links-list">
+                        <a href="#tilt-tutoring" class="quick-link-item">📚 TILT Tutoring</a>
+                        <a href="#academic-support" class="quick-link-item">🎯 Academic Coaching</a>
+                        <a href="#research-opportunities" class="quick-link-item">🔬 Research Opportunities</a>
+                        <a href="#academic-integrity" class="quick-link-item">⚖️ Academic Integrity</a>
+                        <a href="#learning-assistants" class="quick-link-item">🤝 Learning Assistants</a>
+                        <a href="#scholarships" class="quick-link-item">💰 Scholarships</a>
+                    </div>
+                    <a href="undergrad-students.html" class="quick-links-cta">View All Student Resources →</a>
+                </div>
+                
+                <!-- Faculty Quick Links Card -->
+                <div class="quick-links-card">
+                    <div class="quick-links-header">
+                        <div class="quick-links-icon">👨‍🏫</div>
+                        <h3 class="quick-links-card-title">For Faculty & Instructors</h3>
+                    </div>
+                    <div class="quick-links-list">
+                        <a href="#tef" class="quick-link-item">📊 Teaching Framework</a>
+                        <a href="#bpit" class="quick-link-item">🎓 Best Practices</a>
+                        <a href="#professional-development" class="quick-link-item">📈 Professional Development</a>
+                        <a href="#teaching-effectiveness" class="quick-link-item">🏆 Teaching Excellence</a>
+                        <a href="#annual-review" class="quick-link-item">📋 Annual Review</a>
+                        <a href="#instructional-design" class="quick-link-item">👨‍💻 Design Support</a>
+                    </div>
+                    <a href="faculty-resources.html" class="quick-links-cta">View All Faculty Resources →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Events -->
+    <section class="news-events">
+        <div class="news-section">
+            <h2 class="section-header">📰 Latest News</h2>
+            
+            <div class="news-item">
+                <div class="item-title">Best Practices in Teaching Summer Courses Available</div>
+                <div class="item-description">Register now for our intensive 3-week online courses covering all seven teaching effectiveness domains.</div>
+                <div class="item-date">Posted May 15, 2025</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="item-title">New Peer Academic Coaching Program Launch</div>
+                <div class="item-description">Free one-on-one academic coaching now available for all undergraduate students at the TILT Center.</div>
+                <div class="item-date">Posted May 10, 2025</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="item-title">CURC 2025 Award Winners Announced</div>
+                <div class="item-description">Celebrating outstanding undergraduate research and creativity across all CSU colleges.</div>
+                <div class="item-date">Posted May 5, 2025</div>
+            </div>
+            
+            <a href="#news" class="view-all">View All News →</a>
+        </div>
+
+        <div class="events-section">
+            <h2 class="section-header">📅 Upcoming Events</h2>
+            
+            <div class="event-item">
+                <div class="item-title">Summer Teaching Conference 2025</div>
+                <div class="item-description">Three days of professional development, workshops, and networking for CSU educators.</div>
+                <div class="item-date">June 15-17, 2025</div>
+            </div>
+            
+            <div class="event-item">
+                <div class="item-title">Best Practices in Teaching: Online Engagement</div>
+                <div class="item-description">Learn strategies for effective online and hybrid course delivery.</div>
+                <div class="item-date">June 20-30, 2025</div>
+            </div>
+            
+            <div class="event-item">
+                <div class="item-title">Graduate Student Teaching Workshop</div>
+                <div class="item-description">Essential skills for new graduate teaching assistants.</div>
+                <div class="item-date">July 8, 2025</div>
+            </div>
+            
+            <a href="#events" class="view-all">View Full Calendar →</a>
+        </div>
+    </section>
+
+    <!-- Enhanced Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>📍 801 Oval Drive, Fort Collins, CO 80521</li>
+                    <li>📞 Phone: 970-491-4820</li>
+                    <li>✉️ Email: TILT@colostate.edu</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>TILT Quick Links</h3>
+                <ul>
+                    <li><a href="#teaching-effectiveness">Teaching Effectiveness</a></li>
+                    <li><a href="#professional-development">Professional Development</a></li>
+                    <li><a href="#scholarships-fellowships">Scholarships and Fellowships</a></li>
+                    <li><a href="#tutoring">Tutoring</a></li>
+                    <li><a href="#undergraduate-research">Undergraduate Research</a></li>
+                    <li><a href="#academic-integrity">Academic Integrity</a></li>
+                    <li><a href="#service-learning">Service Learning</a></li>
+                    <li><a href="#staff-directory">Staff Directory</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Departments & Programs</h3>
+                <ul>
+                    <li><a href="#teaching-effectiveness-initiative">Teaching Effectiveness Initiative</a></li>
+                    <li><a href="#testing-online-proctoring">Testing and Online Proctoring</a></li>
+                    <li><a href="#learning-programs">Learning Programs</a></li>
+                    <li><a href="#instructional-innovation">Instructional Innovation and Engagement</a></li>
+                    <li><a href="#conferences-workshops">Conferences and Workshops</a></li>
+                    <li><a href="#pressbooks-oer">Pressbooks and OER</a></li>
+                    <li><a href="#best-practices-teaching">Best Practices in Teaching Courses</a></li>
+                    <li><a href="#undergraduate-research-artistry">Undergraduate Research and Artistry</a></li>
+                    <li><a href="#scholarship-fellowship">Scholarship & Fellowship Advising</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Job Opportunities at TILT</h3>
+                <ul>
+                    <li><a href="#no-positions">No Positions Currently Open</a></li>
+                    <li><a href="#csu-jobs">Source: Colorado State University: All Jobs</a></li>
+                </ul>
+                <br>
+                <h3>Reports</h3>
+                <ul>
+                    <li><a href="#tilt-annual-report">TILT Annual Report</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Colorado State University | <a href="#apply">Apply to CSU</a> | <a href="#disclaimer">Disclaimer</a> | <a href="#accessibility">Accessibility</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for audience cards
+            document.querySelectorAll('.audience-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add pulse animation to Quick Links on page load
+            setTimeout(() => {
+                document.querySelectorAll('.quick-link-item').forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.animation = 'pulse 0.6s ease-in-out';
+                    }, index * 50);
+                });
+            }, 1000);
+
+            // Enhanced search functionality
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+
+            searchBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+
+            // Alert button interaction
+            const alertBtn = document.querySelector('.alert-btn');
+            if (alertBtn) {
+                alertBtn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+
+            // Hero CTA interaction
+            const heroCta = document.querySelector('.hero-cta');
+            if (heroCta) {
+                heroCta.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector('#audience').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add hover effects for news and event items
+            document.querySelectorAll('.news-item, .event-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.background = '#f8f9fa';
+                    this.style.margin = '0 -1rem';
+                    this.style.padding = '1.5rem 1rem';
+                    this.style.borderRadius = '8px';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.background = '';
+                    this.style.margin = '';
+                    this.style.padding = '1.5rem 0';
+                    this.style.borderRadius = '';
+                });
+            });
+        });
+
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+
+        // Add CSS animation for pulse effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
