@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TILT - Resources for Graduate Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 0.9rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            background: #e67e22;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item a:hover,
+        .nav-item.active a {
+            color: #1e5631;
+            border-bottom-color: #1e5631;
+        }
+        
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #e9ecef;
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .breadcrumb a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: #1e5631;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #1e5631;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .page-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Student Type Link */
+        .student-type-link {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .student-type-link a {
+            color: #1e5631;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .student-type-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Enhanced GSTCC Program Banner */
+        .gstcc-banner {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #f0ad4e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #f0ad4e;
+            box-shadow: 0 4px 20px rgba(240, 173, 78, 0.15);
+        }
+        
+        .gstcc-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .gstcc-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .gstcc-text {
+            flex: 1;
+        }
+        
+        .gstcc-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gstcc-description {
+            color: #856404;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gstcc-button {
+            background: #f0ad4e;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .gstcc-button:hover {
+            background: #ec971f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(240, 173, 78, 0.3);
+        }
+
+        /* Quick Links Section */
+        .quick-links-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .quick-links-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e5631;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .quick-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            justify-content: center;
+            min-height: 60px;
+        }
+
+        .quick-link:hover {
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 86, 49, 0.3);
+            border-color: #1e5631;
+        }
+
+        .quick-link .icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #1e5631;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c, #1e5631);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .resource-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .resource-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover .resource-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+        }
+        
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e5631;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .resource-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .resource-meta {
+            font-size: 0.8rem;
+            color: #adb5bd;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+        
+        .meta-item.required {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            color: #856404;
+            border: 1px solid #f0ad4e;
+        }
+        
+        .meta-item.certificate {
+            background: linear-gradient(135deg, #cce7ff 0%, #b3d9ff 100%);
+            color: #004085;
+            border: 1px solid #66afe9;
+        }
+
+        .meta-item.training {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .resource-link {
+            color: #1e5631;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            color: #2d6e3c;
+            transform: translateX(3px);
+        }
+
+        .resource-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover::after {
+            transform: translateX(3px);
+        }
+        
+        /* Events Section */
+        .events-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        /* Section spacing */
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e5631;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e8f5e8;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e5631, #2d6e3c);
+            border-radius: 2px;
+        }
+        
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+        
+        .no-events {
+            color: #6c757d;
+            font-style: italic;
+            padding: 1rem;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(30, 86, 49, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e5631;
+            color: white;
+            padding: 2rem 0 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #a8d4a8;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #d4edda;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #2d6e3c;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #a8d4a8;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .resource-card:nth-child(1) { animation-delay: 0.1s; }
+        .resource-card:nth-child(2) { animation-delay: 0.2s; }
+        .resource-card:nth-child(3) { animation-delay: 0.3s; }
+        .resource-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .quick-link {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.9rem;
+                min-height: 55px;
+            }
+            
+            .quick-links-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .gstcc-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .gstcc-icon {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quick-links-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .quick-link {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+                min-height: 50px;
+            }
+
+            .gstcc-banner {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Tablet Styles (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .header-content {
+                padding: 0 2rem;
+            }
+            
+            .search-input {
+                width: 250px;
+            }
+            
+            .main-content {
+                padding: 2rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+        
+        /* Mobile Styles (320px - 767px) */
+        @media (max-width: 767px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1rem;
+                text-align: center;
+            }
+            
+            .search-input {
+                width: 250px;
+            }
+            
+            .nav-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 0.5rem;
+                display: none;
+                background: white;
+                border-radius: 8px;
+                padding: 1rem;
+                margin-top: 1rem;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            }
+            
+            .nav-list.mobile-open {
+                display: flex;
+            }
+            
+            .nav-item a {
+                padding: 0.75rem 0;
+                color: #333;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .resource-card {
+                padding: 1.25rem;
+            }
+            
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Extra Small Mobile (320px - 480px) */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1rem 0.5rem;
+            }
+            
+            .resource-card {
+                padding: 1rem;
+            }
+            
+            .search-input {
+                width: 200px;
+            }
+            
+            .logo {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                🎓 Colorado State University | The Institute for Learning and Teaching
+            </div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search resources, programs, events...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-list" id="navList">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="#faculty">For Faculty & Postdocs</a></li>
+                <li class="nav-item"><a href="undergrad-students.html">For Undergrad Students</a></li>
+                <li class="nav-item active"><a href="#grad">For Grad Students</a></li>
+                <li class="nav-item"><a href="#about">About TILT</a></li>
+                <li class="nav-item"><a href="#staff">Staff</a></li>
+                <li class="nav-item"><a href="#calendar">Calendar</a></li>
+                <li class="nav-item"><a href="#login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="#home">Home</a> > <span>Resources for Graduate Students</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Resources for Graduate Students</h1>
+        <p class="page-subtitle">Professional development, teaching excellence, and research support for advanced learners</p>
+        
+        <!-- Student Type Link -->
+        <div class="student-type-link">
+            Looking for undergraduate resources? <a href="undergrad-students.html">Visit Undergraduate Student Resources →</a>
+        </div>
+
+        <!-- Enhanced GSTCC Program Banner -->
+        <div class="gstcc-banner">
+            <div class="gstcc-content">
+                <div class="gstcc-icon">🏆</div>
+                <div class="gstcc-text">
+                    <div class="gstcc-title">Graduate Student Teaching Certificate (GSTCC) Now Enrolling</div>
+                    <div class="gstcc-description">
+                        Develop advanced teaching skills and earn professional recognition. Join our comprehensive multi-semester certificate program designed specifically for graduate students.
+                    </div>
+                    <button class="gstcc-button">Learn About GSTCC</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="quick-links-section">
+            <div class="quick-links-title">
+                🔗 Quick Links
+            </div>
+            <div class="quick-links-grid">
+                <a href="#new-grad-todo" class="quick-link">
+                    <span class="icon">📋</span>
+                    <span>New Student Checklist</span>
+                </a>
+                <a href="#gstcc" class="quick-link">
+                    <span class="icon">🏆</span>
+                    <span>GSTCC Certificate</span>
+                </a>
+                <a href="#gta-training" class="quick-link">
+                    <span class="icon">👨‍🏫</span>
+                    <span>GTA Training</span>
+                </a>
+                <a href="#consultation" class="quick-link">
+                    <span class="icon">📅</span>
+                    <span>Schedule Consultation</span>
+                </a>
+                <a href="#grad-mentoring" class="quick-link">
+                    <span class="icon">🤝</span>
+                    <span>Find a Mentor</span>
+                </a>
+                <a href="#academic-integrity" class="quick-link">
+                    <span class="icon">⚖️</span>
+                    <span>Academic Integrity</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Getting Started Section -->
+        <section>
+            <h2 class="section-title">🚀 Getting Started as a Graduate Student</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">To-Do List for New Graduate Students</div>
+                    <div class="resource-description">
+                        Essential steps and deadlines to get started with your graduate program at CSU. Complete onboarding checklist and key requirements.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item required">Required</span>
+                        <span class="meta-item">5 min read</span>
+                    </div>
+                    <a href="#new-grad-todo" class="resource-link">View Checklist</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <div class="resource-title">Programs and Resources for Graduate Students</div>
+                    <div class="resource-description">
+                        Comprehensive guide to graduate student support services, professional development opportunities, and academic resources.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Comprehensive</span>
+                        <span class="meta-item">10 min read</span>
+                    </div>
+                    <a href="#grad-programs" class="resource-link">Explore Programs</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">👨‍🏫</div>
+                    <div class="resource-title">Best Practices for Faculty-Graduate Assistant Professional Interactions</div>
+                    <div class="resource-description">
+                        Guidelines and best practices for maintaining effective and professional relationships in academic settings.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Guidelines</span>
+                        <span class="meta-item">Professional development</span>
+                    </div>
+                    <a href="#professional-interactions" class="resource-link">Read Guidelines</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Excellence Section -->
+        <section>
+            <h2 class="section-title">👨‍🏫 Teaching Excellence & GTA Support</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <div class="resource-title">Training for First-Time GTAs</div>
+                    <div class="resource-description">
+                        Required preparation and ongoing support for graduate teaching assistants new to instruction at the university level.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item required">Required</span>
+                        <span class="meta-item training">Training program</span>
+                    </div>
+                    <a href="#gta-training" class="resource-link">Access Training</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🏆</div>
+                    <div class="resource-title">Graduate Student Teaching Certificate of Completion (GSTCC) Program</div>
+                    <div class="resource-description">
+                        Develop advanced teaching skills and earn professional recognition through our comprehensive certificate program.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item certificate">Certificate</span>
+                        <span class="meta-item">Multi-semester</span>
+                    </div>
+                    <a href="#gstcc" class="resource-link">Learn About GSTCC</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <div class="resource-title">Teaching Effectiveness</div>
+                    <div class="resource-description">
+                        Resources and assessment tools for evaluating and improving instructional effectiveness in graduate teaching roles.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Assessment tools</span>
+                        <span class="meta-item">Best practices</span>
+                    </div>
+                    <a href="#teaching-effectiveness" class="resource-link">Access Resources</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research & Professional Development Section -->
+        <section>
+            <h2 class="section-title">🔬 Research & Professional Development</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🤗</div>
+                    <div class="resource-title">Graduate Student Mentoring at TILT</div>
+                    <div class="resource-description">
+                        Peer mentoring opportunities for academic and professional development, research guidance, and career preparation.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Peer mentoring</span>
+                        <span class="meta-item">Ongoing</span>
+                    </div>
+                    <a href="#grad-mentoring" class="resource-link">Find a Mentor</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">💡</div>
+                    <div class="resource-title">Professional Development and Learning Experiences</div>
+                    <div class="resource-description">
+                        Leadership development, communication skills, research methods, and career preparation workshops and seminars.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Workshops</span>
+                        <span class="meta-item">Career focused</span>
+                    </div>
+                    <a href="#professional-development" class="resource-link">View Opportunities</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">Career Development & Future Planning</div>
+                    <div class="resource-description">
+                        Strategic career planning, industry connections, and transition support for academic and non-academic career paths.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Career planning</span>
+                        <span class="meta-item">Industry connections</span>
+                    </div>
+                    <a href="#career-development" class="resource-link">Plan Your Future</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Standards & Resources Section -->
+        <section>
+            <h2 class="section-title">📚 Academic Standards & University Resources</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">⚖️</div>
+                    <div class="resource-title">Academic Honesty and Integrity</div>
+                    <div class="resource-description">
+                        Research ethics, scholarly integrity standards, and guidelines for maintaining academic honesty in graduate work.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Ethics</span>
+                        <span class="meta-item">Research standards</span>
+                    </div>
+                    <a href="#academic-integrity" class="resource-link">Learn About Integrity</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🏛️</div>
+                    <div class="resource-title">University Resources</div>
+                    <div class="resource-description">
+                        Comprehensive directory of campus services, support systems, and resources available to graduate students.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Directory</span>
+                        <span class="meta-item">Campus services</span>
+                    </div>
+                    <a href="#university-resources" class="resource-link">Browse Resources</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📈</div>
+                    <div class="resource-title">Student Success at CSU</div>
+                    <div class="resource-description">
+                        Tools, strategies, and support systems designed to help graduate students achieve academic and professional success.
+                    </div>
+                    <div class="resource-meta">
+                        <span class="meta-item">Success strategies</span>
+                        <span class="meta-item">Support systems</span>
+                    </div>
+                    <a href="#student-success" class="resource-link">Access Success Tools</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Resources Section -->
+        <section>
+            <h2 class="section-title">🌟 Additional Graduate Student Resources</h2>
+            
+            <div class="additional-resources-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="additional-card" style="background: linear-gradient(135deg, #1e5631 0%, #2d6e3c 100%); color: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(30, 86, 49, 0.2); transition: transform 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔬</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Research Excellence Initiative</h3>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-bottom: 1.5rem;">Advanced research methodologies, grant writing workshops, and collaboration opportunities with faculty mentors.</p>
+                    <a href="#research-excellence" style="color: white; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s ease;">
+                        Explore Research →
+                    </a>
+                </div>
+
+                <div class="additional-card" style="background: linear-gradient(135deg, #2d6e3c 0%, #1e5631 100%); color: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(45, 110, 60, 0.2); transition: transform 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Global Learning Opportunities</h3>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-bottom: 1.5rem;">International conferences, study abroad programs, and global research collaborations for graduate students.</p>
+                    <a href="#global-learning" style="color: white; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s ease;">
+                        Go Global →
+                    </a>
+                </div>
+
+                <div class="additional-card" style="background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%); color: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(240, 173, 78, 0.2); transition: transform 0.3s ease;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💼</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Industry Partnerships</h3>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-bottom: 1.5rem;">Connect with industry leaders, internship opportunities, and real-world application of your graduate research.</p>
+                    <a href="#industry-partnerships" style="color: white; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s ease;">
+                        Connect with Industry →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <div class="events-section">
+            <h2 class="section-title">📅 Professional Development Events</h2>
+            <div class="no-events">
+                📌 No scheduled events currently. Subscribe to notifications for workshops on research methods, teaching strategies, and career development.
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>📍 801 Oval Drive, Fort Collins, CO 80521</li>
+                    <li>📞 Phone: 970-491-4820</li>
+                    <li>✉️ Email: TILT@colostate.edu</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#effectiveness">Teaching Effectiveness</a></li>
+                    <li><a href="#development">Professional Development</a></li>
+                    <li><a href="#gta-training">GTA Training</a></li>
+                    <li><a href="#research">Graduate Research</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Programs</h3>
+                <ul>
+                    <li><a href="#gstcc">GSTCC Certificate</a></li>
+                    <li><a href="#mentoring">Graduate Mentoring</a></li>
+                    <li><a href="#innovation">Instructional Innovation</a></li>
+                    <li><a href="#workshops">Professional Workshops</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>University Resources</h3>
+                <ul>
+                    <li><a href="#canvas">Canvas</a></li>
+                    <li><a href="#library">University Libraries</a></li>
+                    <li><a href="#career-center">Career Center</a></li>
+                    <li><a href="#graduate-school">Graduate School</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Colorado State University | <a href="#apply">Apply to CSU</a> | <a href="#disclaimer">Disclaimer</a> | <a href="#accessibility">Accessibility</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const navList = document.getElementById('navList');
+            navList.classList.toggle('mobile-open');
+        }
+        
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+        
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navList = document.getElementById('navList');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navList.contains(event.target) && !navToggle.contains(event.target)) {
+                navList.classList.remove('mobile-open');
+            }
+        });
+        
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+        
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navList = document.getElementById('navList');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navList.contains(event.target) && !navToggle.contains(event.target)) {
+                navList.classList.remove('mobile-open');
+            }
+        });
+        
+        // Add interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for resource cards
+            document.querySelectorAll('.resource-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Simulate navigation feedback
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.boxShadow = '';
+                    }, 200);
+                });
+            });
+            
+            // Add hover effects for additional cards
+            document.querySelectorAll('.additional-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add pulse animation to Quick Links on page load
+            setTimeout(() => {
+                document.querySelectorAll('.quick-link').forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.animation = 'pulse 0.6s ease-in-out';
+                    }, index * 100);
+                });
+            }, 500);
+
+            // Enhanced GSTCC banner interaction
+            const gstccButton = document.querySelector('.gstcc-button');
+            if (gstccButton) {
+                gstccButton.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+        });
+
+        // Add CSS animation for pulse effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
